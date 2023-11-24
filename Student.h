@@ -30,6 +30,8 @@ public:
     void addGrade(const string& subject, int grade);
     void print() const;
 
+    bool operator<(const Student& other) const;
+
     friend ostream& operator<<(ostream& out, const Student& student);
     friend istream& operator>>(istream& is, Student& student);
 };

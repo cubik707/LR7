@@ -14,7 +14,7 @@ void Student::print() const
     // Выводим уникальные предметы и все оценки по каждому предмету
     for (auto it = grades.begin(); it != grades.end();)
     {
-        cout << "| " << it->first << ": ";
+        cout << "| " << it->first << "| ";
 
         // Выводим все оценки по текущему предмету
         auto range = grades.equal_range(it->first);
@@ -30,6 +30,11 @@ void Student::print() const
 
     cout << endl;
     cout.unsetf(ios::left);
+}
+
+bool Student::operator<(const Student& other) const
+{
+    return name < other.name || (name == other.name && group_num < other.group_num);
 }
 
 ostream& operator<<(ostream& out, const Student& student)
