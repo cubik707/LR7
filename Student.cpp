@@ -5,6 +5,33 @@ void Student::addGrade(const string& subject, int grade)
 	grades.insert({ subject, grade });
 }
 
+void Student::print() const
+{
+    cout.setf(ios::left);
+    cout << "| " << setw(18) << name;
+    cout << "| " << setw(8) << group_num;
+
+    // Выводим уникальные предметы и все оценки по каждому предмету
+    for (auto it = grades.begin(); it != grades.end();)
+    {
+        cout << "| " << it->first << ": ";
+
+        // Выводим все оценки по текущему предмету
+        auto range = grades.equal_range(it->first);
+        for (auto innerIt = range.first; innerIt != range.second; ++innerIt)
+        {
+            cout << innerIt->second << " ";
+        }
+
+        // Переходим к следующему предмету
+        it = range.second;
+        cout << "|";
+    }
+
+    cout << endl;
+    cout.unsetf(ios::left);
+}
+
 ostream& operator<<(ostream& out, const Student& student)
 {
     out << student.name << "|" << student.group_num << "|";
