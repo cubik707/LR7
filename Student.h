@@ -23,6 +23,8 @@ public:
     int getGroupNum() const { return group_num; }
     multimap<string, int> getGrades() const { return grades; }
 
+    bool hasSubject(const string& subject) const;
+
     // Сеттеры
     void setName(const string& studentName) { name = studentName; }
     void setGroupNum(int studentGroup) { group_num = studentGroup; }

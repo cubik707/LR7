@@ -34,5 +34,5 @@ public:
 
     void printTableFields(int length);
     void printStudentSet();
-    void printContainerItem(int length);
+    void printContainerItem(int length, int index);
 };

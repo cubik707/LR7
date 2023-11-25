@@ -112,6 +112,7 @@ Student StudentSet::searchByGroupNum(int studentGroupNum)
     return Student(); // Если не найдено, возвращаем пустой объект Student
 }
 
+
 void StudentSet::addStudent(const Student& student)
 {
     students.insert(student);
@@ -122,18 +123,35 @@ void StudentSet::removeStudent(const Student& student)
     students.erase(student);
 }
 
+
 void StudentSet::printTableFields(int length)
 {
     printLine(length);
     cout << setw(5) << "| №" << setw(18) << "| Имя";
     cout << setw(10) << "| Группа" << "| Предмет | Оценки |" << endl;
-    cout << string(length, '-') << endl;
+    printLine(length);
 }
 
 void StudentSet::printStudentSet()
 {
+    int length = 42, i = 1;
+
+    printTableFields(length);
+    for (auto& student : students) {
+        cout << left << setw(5) << "| " + to_string(i++);
+        student.print();
+        cout << endl;
+    }     
 }
 
-void StudentSet::printContainerItem(int length)
+void StudentSet::printContainerItem(int length, int index)
 {
+    int length = 42, i = 1;
+
+    printTableFields(length);
+    auto it = students.begin();
+    advance(it, index);
+    cout << left << setw(5) << "| " + to_string(i++);
+    it->print();
+    cout << endl;
 }

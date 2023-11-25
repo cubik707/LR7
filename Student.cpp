@@ -1,5 +1,10 @@
 #include "Student.h"
 
+bool Student::hasSubject(const string& subject) const
+{
+    return grades.find(subject) != grades.end();
+}
+
 void Student::addGrade(const string& subject, int grade)
 {
 	grades.insert({ subject, grade });
