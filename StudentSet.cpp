@@ -59,6 +59,10 @@ void StudentSet::fillSetFromFile(ifstream& file)
     {
         students.insert(student);
     }
+    if (!file.eof() && file.fail())
+    {
+        throw runtime_error("Ошибка в чтении строки.");
+    }
 }
 
 void StudentSet::writeInFile()
@@ -134,19 +138,18 @@ void StudentSet::printTableFields(int length)
 
 void StudentSet::printStudentSet()
 {
-    int length = 42, i = 1;
+    int length = 51, i = 1;
 
     printTableFields(length);
     for (auto& student : students) {
         cout << left << setw(5) << "| " + to_string(i++);
         student.print();
-        cout << endl;
     }     
 }
 
-void StudentSet::printContainerItem(int length, int index)
+void StudentSet::printContainerItem(int index)
 {
-    int length = 42, i = 1;
+    int length = 51, i = 1;
 
     printTableFields(length);
     auto it = students.begin();

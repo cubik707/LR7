@@ -64,9 +64,9 @@ istream& operator>>(istream& is, Student& student)
 
     while (is >> subject >> grade)
     {
-        student.grades.insert({ subject, grade });
+       student.grades.insert({ subject, grade });
     }
 
-    is.ignore(1, '\n');
+    //is.ignore(1, '\n');
     return is;
 }
