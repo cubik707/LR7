@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <sstream>
 
 using namespace std;
 class Student

@@ -7,5 +7,8 @@ class Menu
 {
 public:
 	void showMenu();
+
+	void addStudent();
+	void removeStudent();
 };
 
