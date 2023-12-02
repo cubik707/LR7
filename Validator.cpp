@@ -89,6 +89,34 @@ void Validator::convert(std::string& str)
 	}
 }
 
+std::string Validator::convertName()
+{
+	std::string input;
+	std::getline(std::cin, input);
+
+	// Преобразование каждого слова в строке
+	std::istringstream iss(input);
+	std::ostringstream oss;
+	std::string word;
+	bool firstWord = true;
+
+	while (iss >> word)
+	{
+		if (!firstWord)
+		{
+			oss << ' ';  // Добавляем пробел перед каждым словом, кроме первого
+		}
+
+		// Преобразование первой буквы в верхний регистр, остальных в нижний
+		Validator::convert(word);
+		oss << word;
+
+		firstWord = false;
+	}
+
+	return oss.str();
+}
+
 void printLine(int length)
 {
 	std::cout << "+" << std::setfill('-') << std::setw(length) << "";

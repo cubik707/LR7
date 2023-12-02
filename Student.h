@@ -22,7 +22,7 @@ public:
     // Геттеры
     string getName() const { return name; }
     int getGroupNum() const { return group_num; }
-    multimap<string, int> getGrades() const { return grades; }
+    multimap<string, int>& getGrades() { return grades; }
 
     bool hasSubject(const string& subject) const;
 
@@ -34,6 +34,7 @@ public:
     void print() const;
 
     bool operator<(const Student& other) const;
+    bool operator==(const Student& other) const;
 
     friend ostream& operator<<(ostream& out, const Student& student);
     friend istream& operator>>(istream& is, Student& student);

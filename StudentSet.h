@@ -18,7 +18,7 @@ public:
 
     ~StudentSet();
 
-    set<Student> getStudents();
+    set<Student>& getStudents();
 
     void readFromFile();
     void fillSetFromFile(ifstream& file);
@@ -30,7 +30,7 @@ public:
 
     void addStudent(const Student& student);
     void removeStudent(const Student& student);
-    void editStudent(Student student);
+    void editStudentName(Student student, const string& name);
 
  /*   void printTableFields(int length);*/
     void printStudentSet();

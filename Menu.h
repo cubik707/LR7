@@ -10,5 +10,9 @@ public:
 
 	void addStudent();
 	void removeStudent();
+	void editStudentName();
+	void editStudentGroup();
+	void editStudentGrade();
+	void editStudentMenu();
 };
 

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <sstream>
 using namespace std;
 
 
@@ -12,6 +13,7 @@ public:
 	static double getDoubleVar(double minLim, double maxLim);
 	static string getValidStr();
 	static void convert(std::string& str);
+	static std::string convertName();
 };
 
 void printLine(int length);

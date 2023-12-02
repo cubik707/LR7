@@ -24,7 +24,7 @@ void Menu::showMenu()
 			removeStudent();
 			break;
 		case 4:
-			
+			editStudentMenu();
 			break;
 		case 5:
 			
@@ -78,8 +78,9 @@ void Menu::addStudent()
 void Menu::removeStudent()
 {
 	cout << "Введите имя студента, которого вы хотите удалить: ";
-	string name = Validator::getValidStr();
-	Validator::convert(name);
+	cin.ignore();
+	string name = Validator::convertName();
+	
 
 	Student studentToDelete = StudentSet::getInstance()->searchByName(name);
 
@@ -91,4 +92,120 @@ void Menu::removeStudent()
 		cout << "Такого студента нет в базе данных!" << endl;
 	}
 
+}
+
+void Menu::editStudentName()
+{
+	cout << "Введите имя студента, которого вы хотите отредактировать: ";
+	cin.ignore();
+	string name = Validator::convertName();
+
+	Student editedStudent = StudentSet::getInstance()->searchByName(name);
+
+	if (editedStudent.getName() != "") {
+		cout << "Текущие данные студента:\n";
+		editedStudent.print();
+
+		cout << "Новое имя: ";
+		string newName = Validator::convertName();
+		editedStudent.setName(newName);
+
+		// Вносим изменения в StudentSet
+		StudentSet::getInstance()->editStudentName(editedStudent, name);
+		cout << "Новые данные студента: " << endl;
+		editedStudent.print();
+	}
+	else {
+		cout << "Такого студента нет в базе данных!" << endl;
+	}
+}
+
+void Menu::editStudentGroup()
+{
+	cout << "Введите имя студента, которого вы хотите отредактировать: ";
+	cin.ignore();
+	string name = Validator::convertName();
+
+	Student editedStudent = StudentSet::getInstance()->searchByName(name);
+
+	if (editedStudent.getName() != "") {
+		cout << "Текущие данные студента:\n";
+		editedStudent.print();
+
+		cout << "Новый номер группы: ";
+		int newGroupNum = Validator::getIntVar(100000, 999999);
+		editedStudent.setGroupNum(newGroupNum);
+
+		// Вносим изменения в StudentSet
+		StudentSet::getInstance()->editStudentName(editedStudent, name);
+		cout << "Новые данные студента: " << endl;
+		editedStudent.print();
+	}
+	else {
+		cout << "Такого студента нет в базе данных!" << endl;
+	}
+	
+}
+
+void Menu::editStudentGrade()
+{
+	cout << "Введите имя студента, которого вы хотите отредактировать: ";
+	cin.ignore();
+	string name = Validator::convertName();
+
+	Student editedStudent = StudentSet::getInstance()->searchByName(name);
+
+	if (editedStudent.getName() != "") {
+		cout << "Текущие данные студента:\n";
+		editedStudent.print();
+
+		cout << "Введите предмет, оценки которого вы хотите отредактировать (учитывая регистр): ";
+		string subjectToEdit = Validator::getValidStr();
+
+		// Поиск предмета в оценках студента
+		auto grades = editedStudent.getGrades();
+		auto it = grades.find(subjectToEdit);
+
+		if (it != editedStudent.getGrades().end()) {
+			// Предлагаем ввести новые оценки
+			cout << "Введите новые оценки для предмета " << subjectToEdit << " (предмет и оценка через пробел): ";
+			int newGrade = Validator::getIntVar(0, 10);
+
+			// Обновляем оценки для предмета
+			it->second = newGrade;
+			// Вносим изменения в StudentSet
+			StudentSet::getInstance()->editStudentName(editedStudent, name);
+			cout << "Новые данные студента: " << endl;
+			editedStudent.print();
+		}
+		else {
+			cout << "Предмет не найден!" << endl;
+		}
+	}
+	else {
+		cout << "Такого студента нет в базе данных!" << endl;
+	}
+}
+
+void Menu::editStudentMenu()
+{
+	cout << left << "Что вы хотите изменить? " << endl;
+	cout << "1 - Имя" << endl;
+	cout << "2 - Номер группы" << endl;
+	cout << "3 - Предметы и оценки" << endl;
+	cout << "0 - Назад" << endl;
+	int choice = Validator::getIntVar(0, 6);
+	switch (choice) {
+	case 1:
+		editStudentName();
+		break;
+	case 2:
+		editStudentGroup();
+		break;
+	case 3:
+		editStudentGrade();
+		break;
+	case 0:
+		return;
+	}
 }

@@ -45,6 +45,11 @@ bool Student::operator<(const Student& other) const
     return name < other.name || (name == other.name && group_num < other.group_num);
 }
 
+bool Student::operator==(const Student& other) const
+{
+    return name == other.name;
+}
+
 ostream& operator<<(ostream& out, const Student& student)
 {
     out << student.name << "|" << student.group_num << "|";

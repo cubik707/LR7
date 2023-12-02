@@ -20,7 +20,7 @@ StudentSet::~StudentSet()
     }
 }
 
-set<Student> StudentSet::getStudents()
+set<Student>& StudentSet::getStudents()
 {
     return students;
 }
@@ -99,8 +99,9 @@ void StudentSet::writeInFile()
 
 Student StudentSet::searchByName(const string& studentName)
 {
-    Student dummyStudent(studentName, 0);
-    auto it = students.find(dummyStudent);
+    auto it = find_if(students.begin(), students.end(), [&studentName](const Student& student) {
+        return student.getName() == studentName;
+        });
     return (it != students.end()) ? *it : Student(); // Если не найдено, возвращаем пустой объект Student
 }
 
@@ -125,6 +126,17 @@ void StudentSet::addStudent(const Student& student)
 void StudentSet::removeStudent(const Student& student)
 {
     students.erase(student);
+}
+
+void StudentSet::editStudentName(Student student, const string& name)
+{
+    Student existingStudent = searchByName(name);
+    // Удаляем старого студента из набора
+    students.erase(existingStudent);
+    // Добавляем отредактированного студента в набор
+    students.insert(student);
+
+    cout << "Студент успешно отредактирован!" << endl;
 }
 
 
