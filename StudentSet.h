@@ -26,7 +26,7 @@ public:
 
     //bool hasStudent(const string& studentName);
     Student searchByName(const string& studentName);
-    Student searchByGroupNum(int studentGroupNum);
+    set<Student> searchByGroupNum(int studentGroupNum);
 
     void addStudent(const Student& student);
     void removeStudent(const Student& student);

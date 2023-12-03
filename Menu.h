@@ -14,5 +14,6 @@ public:
 	void editStudentGroup();
 	void editStudentGrade();
 	void editStudentMenu();
+	void searchMenu();
 };
 

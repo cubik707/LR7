@@ -105,16 +105,18 @@ Student StudentSet::searchByName(const string& studentName)
     return (it != students.end()) ? *it : Student(); // Если не найдено, возвращаем пустой объект Student
 }
 
-Student StudentSet::searchByGroupNum(int studentGroupNum)
+set<Student> StudentSet::searchByGroupNum(int studentGroupNum)
 {
+    set<Student> matchingStudent;
     for (const auto& student : students)
     {
         if (student.getGroupNum() == studentGroupNum)
-        {
-            return student;
+        {   
+            matchingStudent.insert(student);
+            
         }
     }
-    return Student(); // Если не найдено, возвращаем пустой объект Student
+    return matchingStudent;
 }
 
 

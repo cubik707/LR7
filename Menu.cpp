@@ -196,7 +196,7 @@ void Menu::editStudentMenu()
 	cout << "2 - Номер группы" << endl;
 	cout << "3 - Предметы и оценки" << endl;
 	cout << "0 - Назад" << endl;
-	int choice = Validator::getIntVar(0, 6);
+	int choice = Validator::getIntVar(0, 3);
 	switch (choice) {
 	case 1:
 		editStudentName();
@@ -209,5 +209,54 @@ void Menu::editStudentMenu()
 		break;
 	case 0:
 		return;
+	}
+}
+
+void Menu::searchMenu()
+{
+	while (true)
+	{
+		cout << left << "По чему провести посик? " << endl;
+		cout << "1 - Имя" << endl;
+		cout << "2 - Номер группы" << endl;
+		cout << "3 - Название предмета" << endl;
+		cout << "0 - Назад" << endl;
+		int choice = Validator::getIntVar(0, 3);
+		switch (choice) {
+		case 1: {
+			cout << "Введите имя студента: ";
+			cin.ignore();
+			string name = Validator::convertName();
+			Student student = StudentSet::getInstance()->searchByName(name);
+			if (student.getName() != "") {
+				cout << "Студент найден!" << endl;
+				student.print();
+			}
+			else {
+				cout << "Такого студента нет в базе данных!" << endl;
+			}
+		}
+			break;
+		case 2: {
+			cout << "Введите номер группы: ";
+			int groupNum = Validator::getIntVar(100000, 999999);
+			set<Student> students = StudentSet::getInstance()->searchByGroupNum(groupNum);
+			if (!students.empty()) {
+				cout << "Студенты найдены!" << endl;
+				for (auto& student : students) {
+					student.print();
+				}	
+			}
+			else {
+				cout << "Такого студента нет в базе данных!" << endl;
+			}
+		}
+			break;
+		case 3:
+
+			break;
+		case 0:
+			return;
+		}
 	}
 }
