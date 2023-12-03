@@ -253,7 +253,22 @@ void Menu::searchMenu()
 		}
 			break;
 		case 3:
-
+		{
+			cout << "Введите название предмета: ";
+			cin.ignore();
+			string subject;
+			getline(cin, subject);
+			set<Student> students = StudentSet::getInstance()->searchBySubject(subject);
+			if (!students.empty()) {
+				cout << "Студенты найдены!" << endl;
+				for (auto& student : students) {
+					student.print();
+				}
+			}
+			else {
+				cout << "Таких студентов нет в базе данных!" << endl;
+			}
+		}
 			break;
 		case 0:
 			return;

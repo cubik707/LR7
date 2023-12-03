@@ -113,6 +113,19 @@ set<Student> StudentSet::searchByGroupNum(int studentGroupNum)
     return matchingStudent;
 }
 
+set<Student> StudentSet::searchBySubject(const string& subject)
+{
+    set<Student> result;
+    for (const auto& student : students) {
+        for (auto it = student.getGrades().begin(); it != student.getGrades(); ++it) {
+            if (it->first == subject) {
+                result.insert(student);
+            }
+        }
+    }
+    
+}
+
 
 void StudentSet::addStudent(const Student& student)
 {
