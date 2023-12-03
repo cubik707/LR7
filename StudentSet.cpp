@@ -70,7 +70,7 @@ void StudentSet::writeInFile()
     ofstream file;
     try
     {
-        file.open("students.txt", ios::out | ios::trunc);
+        file.open("students_.txt", ios::out | ios::trunc);
 
         if (file.bad())
         {

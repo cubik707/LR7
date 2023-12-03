@@ -9,6 +9,6 @@ int main() {
 	StudentSet::getInstance()->readFromFile();
 	Menu menu;
 	menu.showMenu();
-
+	StudentSet::getInstance()->writeInFile();
 	return 0;
 }

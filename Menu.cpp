@@ -41,8 +41,7 @@ void Menu::addStudent()
 
 	cout << "Введите имя студента: ";
 	cin.ignore();
-	name = Validator::getValidStr();
-	Validator::convert(name);
+	name = Validator::convertName();
 
 	cout << "Введите номер группы: ";
 	group_num = Validator::getIntVar(0, 999999);
@@ -55,7 +54,6 @@ void Menu::addStudent()
 		int grade;
 
 		cout << "Введите предмет: ";
-		cin.ignore();
 		subject = Validator::getValidStr();
 
 		cout << "Введите оценку: ";
