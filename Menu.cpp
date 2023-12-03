@@ -44,6 +44,7 @@ void Menu::addStudent()
 	int group_num;
 
 	cout << "Введите имя студента: ";
+	cin.ignore();
 	name = Validator::getValidStr();
 	Validator::convert(name);
 
@@ -58,8 +59,8 @@ void Menu::addStudent()
 		int grade;
 
 		cout << "Введите предмет: ";
+		cin.ignore();
 		subject = Validator::getValidStr();
-		Validator::convert(subject);
 
 		cout << "Введите оценку: ";
 		grade = Validator::getIntVar(0, 10);
@@ -154,7 +155,7 @@ void Menu::editStudentGrade()
 	string name = Validator::convertName();
 
 	Student editedStudent = StudentSet::getInstance()->searchByName(name);
-
+	
 	if (editedStudent.getName() != "") {
 		cout << "Текущие данные студента:\n";
 		editedStudent.print();
@@ -162,25 +163,26 @@ void Menu::editStudentGrade()
 		cout << "Введите предмет, оценки которого вы хотите отредактировать (учитывая регистр): ";
 		string subjectToEdit = Validator::getValidStr();
 
-		// Поиск предмета в оценках студента
-		auto grades = editedStudent.getGrades();
-		auto it = grades.find(subjectToEdit);
+		multimap<string, int>& grades = editedStudent.getGrades();
+		bool isSubjectFound = false;
+		for (auto it = grades.begin(); it != grades.end(); ++it) {
+			if (it->first == subjectToEdit) {
+				cout << "Введите новые оценки для предмета " << subjectToEdit << " (предмет и оценка через пробел): ";
+				int newGrade = Validator::getIntVar(0, 10);
 
-		if (it != editedStudent.getGrades().end()) {
-			// Предлагаем ввести новые оценки
-			cout << "Введите новые оценки для предмета " << subjectToEdit << " (предмет и оценка через пробел): ";
-			int newGrade = Validator::getIntVar(0, 10);
-
-			// Обновляем оценки для предмета
-			it->second = newGrade;
-			// Вносим изменения в StudentSet
-			StudentSet::getInstance()->editStudentName(editedStudent, name);
-			cout << "Новые данные студента: " << endl;
-			editedStudent.print();
+				// Обновляем оценки для предмета
+				it->second = newGrade;
+				isSubjectFound = true;
+			}
 		}
-		else {
+		if (!isSubjectFound) {
 			cout << "Предмет не найден!" << endl;
+			return;
 		}
+		// Вносим изменения в StudentSet
+		StudentSet::getInstance()->editStudentName(editedStudent, name);
+		cout << "Новые данные студента: " << endl;
+		editedStudent.print();;
 	}
 	else {
 		cout << "Такого студента нет в базе данных!" << endl;
