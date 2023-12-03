@@ -24,7 +24,6 @@ public:
     void fillSetFromFile(ifstream& file);
     void writeInFile();
 
-    //bool hasStudent(const string& studentName);
     Student searchByName(const string& studentName);
     set<Student> searchByGroupNum(int studentGroupNum);
 
