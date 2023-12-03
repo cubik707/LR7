@@ -141,15 +141,6 @@ void StudentSet::editStudentName(Student student, const string& name)
     cout << "Студент успешно отредактирован!" << endl;
 }
 
-
-//void StudentSet::printTableFields(int length)
-//{
-//    printLine(length);
-//    cout << setw(5) << "| №" << setw(18) << "| Имя";
-//    cout << setw(10) << "| Группа" << "| Предмет | Оценки |" << endl;
-//    printLine(length);
-//}
-
 void StudentSet::printStudentSet()
 {
     int length = 137, i = 1;
@@ -158,17 +149,5 @@ void StudentSet::printStudentSet()
         cout << left << setw(5) << "| " + to_string(i++);
         student.print();
     }    
-    printLine(length);
-}
-
-void StudentSet::printContainerItem(int index)
-{
-    int length = 137, i = 1;
-
-    printLine(length);
-    auto it = students.begin();
-    advance(it, index);
-    cout << left << setw(5) << "| " + to_string(i++);
-    it->print();
     printLine(length);
 }

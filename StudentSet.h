@@ -32,7 +32,6 @@ public:
     void removeStudent(const Student& student);
     void editStudentName(Student student, const string& name);
 
- /*   void printTableFields(int length);*/
     void printStudentSet();
-    void printContainerItem(int index);
+
 };
