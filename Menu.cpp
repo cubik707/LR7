@@ -10,7 +10,6 @@ void Menu::showMenu()
 		cout << "3 - Удалить данные" << endl;
 		cout << "4 - Редактировать данные" << endl;
 		cout << "5 - Поиск" << endl;
-		cout << "6 - Сортировка" << endl;
 		cout << "0 - Назад" << endl;
 		int choice = Validator::getIntVar(0, 6);
 		switch (choice) {
@@ -28,10 +27,6 @@ void Menu::showMenu()
 			break;
 		case 5:
 			searchMenu();
-			break;
-		case 6:
-
-			StudentSet::getInstance()->printStudentSet();
 			break;
 		case 0:
 			return;
