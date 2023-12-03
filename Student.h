@@ -23,6 +23,7 @@ public:
     string getName() const { return name; }
     int getGroupNum() const { return group_num; }
     multimap<string, int>& getGrades() { return grades; }
+    const multimap<string, int>& getGrades() const { return grades; }
 
     // Сеттеры
     void setName(const string& studentName) { name = studentName; }

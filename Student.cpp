@@ -36,6 +36,7 @@ void Student::print() const
     cout.unsetf(ios::left);
 }
 
+
 bool Student::operator<(const Student& other) const
 {
     return name < other.name || (name == other.name && group_num < other.group_num);

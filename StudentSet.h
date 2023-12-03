@@ -2,6 +2,7 @@
 #include "Student.h"
 #include <set>
 #include "Validator.h"
+#include <algorithm>
 
 class StudentSet
 {

@@ -27,10 +27,11 @@ void Menu::showMenu()
 			editStudentMenu();
 			break;
 		case 5:
-			
+			searchMenu();
 			break;
 		case 6:
-			
+
+			StudentSet::getInstance()->printStudentSet();
 			break;
 		case 0:
 			return;

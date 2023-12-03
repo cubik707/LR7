@@ -117,14 +117,16 @@ set<Student> StudentSet::searchBySubject(const string& subject)
 {
     set<Student> result;
     for (const auto& student : students) {
-        for (auto it = student.getGrades().begin(); it != student.getGrades(); ++it) {
+        auto& grades = student.getGrades();
+        for (auto it = grades.begin(); it != grades.end(); ++it) {
             if (it->first == subject) {
                 result.insert(student);
             }
         }
     }
-    
+    return result;
 }
+
 
 
 void StudentSet::addStudent(const Student& student)
