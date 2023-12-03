@@ -63,6 +63,7 @@ string Validator::getValidStr()
 
 	do {
 		try {
+			std::cin.ignore();
 			std::getline(std::cin, str);
 			if (std::cin.fail() || str.empty()) {
 				throw std::runtime_error("Ошибка ввода! Строка пуста!");

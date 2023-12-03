@@ -155,7 +155,7 @@ void Menu::editStudentGrade()
 	string name = Validator::convertName();
 
 	Student editedStudent = StudentSet::getInstance()->searchByName(name);
-	
+
 	if (editedStudent.getName() != "") {
 		cout << "Текущие данные студента:\n";
 		editedStudent.print();
@@ -182,7 +182,7 @@ void Menu::editStudentGrade()
 		// Вносим изменения в StudentSet
 		StudentSet::getInstance()->editStudentName(editedStudent, name);
 		cout << "Новые данные студента: " << endl;
-		editedStudent.print();;
+		editedStudent.print();
 	}
 	else {
 		cout << "Такого студента нет в базе данных!" << endl;

@@ -90,6 +90,12 @@ void StudentSet::writeInFile()
         exit(0);
     }
 }
+//
+//bool StudentSet::hasStudent(const string& studentName)
+//{
+//    Student dummyStudent(studentName, 0);
+//    return students.find(dummyStudent) != students.end();
+//}
 
 Student StudentSet::searchByName(const string& studentName)
 {
